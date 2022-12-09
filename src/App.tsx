@@ -1,25 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Provider } from 'react-redux';
 import './App.css';
+import Form from './components/Form/Form';
+import GenerateAnswer from './components/GenerateAnswer/GenerateAnswer';
+import ListOptions from './components/ListOptions/ListOptions';
+import { useAppSelector } from './hooks/redux';
+import { setupStore } from './store/store';
 
 function App() {
+  
+  const {options} = useAppSelector(state => state.optionReducer)
+  const {question} = useAppSelector(state => state.questionReducer)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+      <div className="App">
+        <div className="container">
+          <Form />
+
+          <div className='wrap'>
+            {options.length > 0 && (
+              <div>
+                <h3>Варианты:</h3>
+                <ListOptions options={options}/>
+              </div>
+            )}
+            
+            
+            {question && <GenerateAnswer />}
+          </div>
+          
+          
+        </div>
+      </div>
+    
   );
 }
 

@@ -1,0 +1,11 @@
+.answer {
+    margin-top: 5px;
+    
+    font-size: 20;
+    color: white;
+}
+.answer-bold {
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 15px;
+}
